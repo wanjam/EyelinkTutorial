@@ -18,9 +18,13 @@ Info.P = P;
 % 2. Open display.
 % -------------------------------------------------------------------------
 Screen('Preference', 'SkipSyncTests', 1);
-Screen('ConfigureDisplay', 'Scanout', P.PresentScreen, 0, P.myWidth,...
+if isunix
+    Screen('ConfigureDisplay', 'Scanout', P.PresentScreen, 0, P.myWidth,...
         P.myHeight, P.myRate);
-wPtr = Screen('OpenWindow', P.PresentScreen, P.BgColor,  [0 0 640 320]);
+else
+    Screen('Resolution', P.PresentScreen, P.myWidth, P.myHeight, P.myRate);
+end
+wPtr = Screen('OpenWindow', P.PresentScreen, P.BgColor);
 
 %% ----------------------------------------------------------------
 % 3. Open connections to Eyetracker
