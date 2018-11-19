@@ -54,10 +54,10 @@ end
 %dummy line to get maxSmoothLineWidth for current computer
 [~, maxSmoothLineWidth, ~, maxAliasedLineWidth] = Screen('DrawLines',window);
 
-fprintf('\nMaxSmooth: %.5f\nMaxAlias: %.5f\nDesired: %.5f', maxSmoothLineWidth, maxAliasedLineWidth, d2*ppd);
+fprintf('\nMaxSmooth: %.5f\nMaxAlias: %.5f', maxSmoothLineWidth, maxA)
 Screen('DrawLines',window,...
     [x-d1/2*ppd-2,x+d1/2*ppd+2,x,x; y,y,y-d1/2*ppd-2,y+d1/2*ppd+2],...
-    min(d2*ppd,maxSmoothLineWidth), bgcolor,[],2); %-2/+2 because anti-aliasing otherwise casts a shadow ring around the whole thing
+    min(d2*ppd,maxAliasedLineWidth), bgcolor,[],2); %-2/+2 because anti-aliasing otherwise casts a shadow ring around the whole thing
 
 if d2*ppd>maxAliasedLineWidth
     warning('fxpt:pxvrld',['linewidth receives a cutoff because %.2f degree of visual'...
